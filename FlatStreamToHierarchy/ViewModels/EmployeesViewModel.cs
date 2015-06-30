@@ -28,8 +28,8 @@ namespace FlatStreamToHierarchy.ViewModels
 
             
             //
-            //This is only for testing my TreeView XAML stuff to make sure it will display when everthing is correct.
-            //Comment out to see 2 collapsable nodes in TreeView.
+            //This is only for testing my TreeView XAML stuff to make sure it's able to display a tree-like structure.
+            //Comment out to see 2 expandable nodes in TreeView.
             //
 
             //var boss = new EmployeeViewModel(1, 0, "Boss");
@@ -61,7 +61,7 @@ namespace FlatStreamToHierarchy.ViewModels
             Name = employeeDto.Name;
         }
 
-        //For testing Ctor...
+        //For testing Ctor...I don't need the EmployeeDto
         public EmployeeViewModel(int id, int bossId, string name)
         {
             Id = id;
