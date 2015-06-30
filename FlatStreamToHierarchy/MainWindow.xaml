@@ -1,0 +1,48 @@
+﻿<Window x:Class="FlatStreamToHierarchy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:FlatStreamToHierarchy.ViewModels"
+        d:DataContext="{d:DesignInstance viewModels:EmployeesViewModel, IsDesignTimeCreatable=False}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="525"
+        
+        >
+    <Grid>
+        <TreeView ItemsSource="{Binding EmployeeViewModels}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type viewModels:EmployeeViewModel}" ItemsSource="{Binding Inferiors}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Id:" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Id}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="BossId:" />
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding BossId}" />
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="Name:" />
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Text="{Binding Name}" />
+
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+    </Grid>
+</Window>

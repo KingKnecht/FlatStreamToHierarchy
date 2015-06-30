@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DynamicData.PLinq</name>
+    </assembly>
+    <members>
+        <member name="T:DynamicData.PLinq.ParallelEx">
+            <summary>
+            Parallelisation extensions for DynamicData
+             </summary>
+        </member>
+        <member name="T:DynamicData.PLinq.ParallelisationOptions">
+            <summary>
+            Options to specify parallelisation of stream operations.  Only applicable for .Net4 and .Net45 builds 
+            </summary>
+        </member>
+        <member name="F:DynamicData.PLinq.ParallelisationOptions.Default">
+            <summary>
+            The default parallelisation options
+            </summary>
+        </member>
+        <member name="F:DynamicData.PLinq.ParallelisationOptions.None">
+            <summary>
+            Value to be used when no parallelisation should take place
+            </summary>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelisationOptions.#ctor(DynamicData.PLinq.ParallelType,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Object"/> class.
+            </summary>
+        </member>
+        <member name="P:DynamicData.PLinq.ParallelisationOptions.Type">
+            <summary>
+            Gets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="P:DynamicData.PLinq.ParallelisationOptions.Threshold">
+            <summary>
+            Gets the threshold.
+            </summary>
+            <value>
+            The threshold.
+            </value>
+        </member>
+        <member name="T:DynamicData.PLinq.ParallelOperators">
+            <summary>
+            PLinq operators or Net4 and Net45 only
+            </summary>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.SubscribeMany``2(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,System.IDisposable},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Subscribes to each item when it is added to the stream and unsubcribes when it is removed.  All items will be unsubscribed when the stream is disposed
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="subscriptionFactory">The subsription function</param>
+            <param name="parallelisationOptions">The parallelisation options.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            subscriptionFactory</exception>
+            <remarks>
+            Subscribes to each item when it is added or updates and unsubcribes when it is removed
+            </remarks>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.SubscribeMany``2(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,``1,System.IDisposable},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Subscribes to each item when it is added to the stream and unsubcribes when it is removed.  All items will be unsubscribed when the stream is disposed
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="subscriptionFactory">The subsription function</param>
+            <param name="parallelisationOptions">The parallelisation options.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            subscriptionFactory</exception>
+            <remarks>
+            Subscribes to each item when it is added or updates and unsubcribes when it is removed
+            </remarks>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.Transform``3(System.IObservable{DynamicData.IChangeSet{``1,``2}},System.Func{``1,``2,``0},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Projects each update item to a new form using the specified transform function
+            </summary>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <typeparam name="TSource">The type of the source.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="transformFactory">The transform factory.</param>
+            <param name="parallelisationOptions">The parallelisation options to be used on the transforms</param>
+            <returns>
+            A transformed update collection
+            </returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            transformFactory</exception>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.Transform``3(System.IObservable{DynamicData.IChangeSet{``1,``2}},System.Func{``1,``0},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Projects each update item to a new form using the specified transform function
+            </summary>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <typeparam name="TSource">The type of the source.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="transformFactory">The transform factory.</param>
+            <param name="parallelisationOptions">The parallelisation options.</param>
+            <returns>
+            A transformed update collection
+            </returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            transformFactory</exception>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.TransformSafe``3(System.IObservable{DynamicData.IChangeSet{``1,``2}},System.Func{``1,``0},System.Action{DynamicData.Kernel.Error{``1,``2}},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Projects each update item to a new form using the specified transform function,
+            providing an error handling action to safely handle transform errors without killing the stream.
+            </summary>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <typeparam name="TSource">The type of the source.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="transformFactory">The transform factory.</param>
+            <param name="errorHandler">Provides the option to safely handle errors without killing the stream.
+             If not specified the stream will terminate as per rx convention.
+            </param>
+            <param name="parallelisationOptions">The parallelisation options.</param>
+            <returns>
+            A transformed update collection
+            </returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            transformFactory</exception>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.TransformSafe``3(System.IObservable{DynamicData.IChangeSet{``1,``2}},System.Func{``1,``2,``0},System.Action{DynamicData.Kernel.Error{``1,``2}},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Projects each update item to a new form using the specified transform function,
+            providing an error handling action to safely handle transform errors without killing the stream.
+            </summary>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <typeparam name="TSource">The type of the source.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="transformFactory">The transform factory.</param>
+            <param name="errorHandler">Provides the option to safely handle errors without killing the stream.
+             If not specified the stream will terminate as per rx convention.
+            </param>
+            <param name="parallelisationOptions">The parallelisation options to be used on the transforms</param>
+            <returns>
+            A transformed update collection
+            </returns>
+            <exception cref="T:System.ArgumentNullException">source
+            or
+            transformFactory</exception>
+        </member>
+        <member name="M:DynamicData.PLinq.ParallelOperators.Filter``2(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,System.Boolean},DynamicData.PLinq.ParallelisationOptions)">
+            <summary>
+            Filters the stream using the specified predicate
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="filter">The filter.</param>
+            <param name="parallelisationOptions">The parallelisation options.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">source</exception>
+        </member>
+        <member name="T:DynamicData.PLinq.ParallelType">
+            <summary>
+            The type of parallisation
+            </summary>
+        </member>
+        <member name="F:DynamicData.PLinq.ParallelType.None">
+            <summary>
+            No parallelisation will take place
+            </summary>
+        </member>
+        <member name="F:DynamicData.PLinq.ParallelType.Parallelise">
+            <summary>
+            Parallelisation will take place without preserving the enumerable order
+            </summary>
+        </member>
+        <member name="F:DynamicData.PLinq.ParallelType.Ordered">
+            <summary>
+            Parallelisation will take place whilst preserving the enumerable order
+            </summary>
+        </member>
+        <member name="T:DynamicData.PLinq.PLinqFilteredUpdater`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+        </member>
+    </members>
+</doc>
