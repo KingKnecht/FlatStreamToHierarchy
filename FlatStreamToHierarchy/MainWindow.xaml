@@ -13,7 +13,7 @@
         <TreeView ItemsSource="{Binding EmployeeViewModels}">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type viewModels:EmployeeViewModel}" ItemsSource="{Binding Inferiors}">
-                    <Grid>
+                    <Grid Margin="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*" />

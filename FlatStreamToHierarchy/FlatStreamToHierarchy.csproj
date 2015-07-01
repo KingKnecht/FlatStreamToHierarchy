@@ -70,7 +70,9 @@
     </ApplicationDefinition>
     <Compile Include="Services\Dtos\EmployeeDto.cs" />
     <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="ViewModels\EmployeeNode.cs" />
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
