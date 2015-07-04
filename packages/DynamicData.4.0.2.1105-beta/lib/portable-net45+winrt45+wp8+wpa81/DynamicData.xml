@@ -472,6 +472,288 @@
             <param name="accumulator">The accumulator.</param>
             <returns></returns>
         </member>
+        <member name="M:DynamicData.Internal.AbstractFilter`2.UpdateWithFilter.#ctor(System.Boolean,DynamicData.Change{`0,`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Object"/> class.
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.#ctor(DynamicData.IObservableCache{`0,`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Object"/> class.
+            </summary>
+        </member>
+        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.CountChanged">
+            <summary>
+            A count changed observable starting with the current count
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Watch(`1)">
+            <summary>
+            Watches updates from a single item using the specified key
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Connect">
+            <summary>
+            Returns a stream of cache updates preceeded with the initital cache state
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Connect(System.Func{`0,System.Boolean})">
+            <summary>
+            Returns a filtered stream of cache updates preceeded with the initital filtered state
+            </summary>
+            <param name="filter">The filter.</param>
+            <returns></returns>
+        </member>
+        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Keys">
+            <summary>
+            Gets the keys
+            </summary>
+        </member>
+        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Items">
+            <summary>
+            Gets the Items
+            </summary>
+        </member>
+        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Count">
+            <summary>
+            The total count of cached items
+            </summary>
+        </member>
+        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.KeyValues">
+            <summary>
+            Gets the key value pairs
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Lookup(`1)">
+            <summary>
+            Lookup a single item using the specified key.
+            </summary>
+            <remarks>
+            Fast indexed lookup
+            </remarks>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:DynamicData.Internal.KeySelectorException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.KeySelectorException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Exception"/> class.
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.KeySelectorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Exception"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="M:DynamicData.Internal.KeySelectorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Exception"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception. </param><param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. </param>
+        </member>
+        <member name="P:DynamicData.Internal.KeyValueCollection`2.Comparer">
+            <summary>
+            Gets the comparer used to peform the sort
+            </summary>
+            <value>
+            The comparer.
+            </value>
+        </member>
+        <member name="T:DynamicData.Internal.TransformMany`2.TransformedItem`1">
+            <summary>
+             Staging object for ManyTransform.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:DynamicData.Internal.CombineOperator">
+            <summary>
+            How the multiple streams are combinedL
+            </summary>
+        </member>
+        <member name="F:DynamicData.Internal.CombineOperator.ContainedInEach">
+            <summary>
+            Resultant stream is comprised of items which are in each the caches
+            </summary>
+        </member>
+        <member name="F:DynamicData.Internal.CombineOperator.ContainedInAny">
+            <summary>
+            Resultant stream is comprised of items which are in any of the caches
+            </summary>
+        </member>
+        <member name="F:DynamicData.Internal.CombineOperator.ExceptFor">
+            <summary>
+            Resultant stream is comprised of items which are in the first stream and not the others
+            </summary>
+        </member>
+        <member name="T:DynamicData.Internal.Combiner`2">
+            <summary>
+                Combines multiple caches using logical opertators
+            </summary>
+        </member>
+        <member name="T:DynamicData.Internal.DynamicFilter`2">
+            <summary>
+             Filters and maintains a cache
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+        </member>
+        <member name="M:DynamicData.Internal.Grouper`3.ChangeWithGroup.#ctor(DynamicData.Change{`0,`1},System.Func{`0,`2})">
+            <summary>
+                Initializes a new instance of the <see cref="T:System.Object" /> class.
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.Grouper`3.ChangeWithGroup.ToString">
+            <summary>
+                Returns the fully qualified type name of this instance.
+            </summary>
+            <returns>
+                A <see cref="T:System.String" /> containing a fully qualified type name.
+            </returns>
+        </member>
+        <member name="M:DynamicData.Internal.IIndexCalculator`2.Load(DynamicData.ICache{`0,`1})">
+            <summary>
+            Initialises the specified changes.
+            </summary>
+            <param name="cache">The cache.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.IIndexCalculator`2.Calculate(DynamicData.IChangeSet{`0,`1})">
+            <summary>
+            Dynamic calculation of changed items which produce a result which can be enumerated through in order
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.IIndexCalculator`2.ChangeComparer(DynamicData.Internal.KeyValueComparer{`0,`1})">
+            <summary>
+            Changes the comparer.
+            </summary>
+            <param name="comparer">The comparer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.IIndexCalculator`2.Reorder">
+            <summary>
+            Reorders the current list.  Required when the list is sorted on mutable values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DynamicData.Internal.IIndexCalculator`2.Comparer">
+            <summary>
+            Gets the comparer.
+            </summary>
+            <value>
+            The comparer.
+            </value>
+        </member>
+        <member name="P:DynamicData.Internal.IIndexCalculator`2.List">
+            <summary>
+            Gets the list.
+            </summary>
+        </member>
+        <member name="T:DynamicData.Internal.IndexCalculator`2">
+            <summary>
+            Calculates a sequential change set.
+            
+            This enables the binding infrastructure to simply iterate the change set
+            and apply indexed changes with no need to apply ant expensive IndexOf() operations.
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.IndexCalculator`2.#ctor(DynamicData.Internal.KeyValueComparer{`0,`1},DynamicData.Operators.SortOptimisations)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Object"/> class.
+            </summary>
+        </member>
+        <member name="M:DynamicData.Internal.IndexCalculator`2.Load(DynamicData.ICache{`0,`1})">
+            <summary>
+            Initialises the specified changes.
+            </summary>
+            <param name="cache">The cache.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.IndexCalculator`2.Reset(DynamicData.ICache{`0,`1})">
+            <summary>
+            Initialises the specified changes.
+            </summary>
+            <param name="cache">The cache.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.IndexCalculator`2.Calculate(DynamicData.IChangeSet{`0,`1})">
+            <summary>
+            Dynamic calculation of moved items which produce a result which can be enumerated through in order
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.ManagedGroup`3.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        </member>
+        <member name="M:DynamicData.Internal.ManagedGroup`3.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:DynamicData.Internal.ManagedGroup`3.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:DynamicData.Internal.Sorter`2.Sort(DynamicData.IChangeSet{`0,`1})">
+            <summary>
+            Sorts the specified changes. Will return null if there are no changes
+            </summary>
+            <param name="changes">The changes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.Sorter`2.Sort(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sorts all data using the specified comparer
+            </summary>
+            <param name="comparer">The comparer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.Sorter`2.Sort">
+            <summary>
+            Sorts all data using the current comparer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DynamicData.Internal.Sorter`2.DoSort(DynamicData.SortReason,DynamicData.IChangeSet{`0,`1})">
+            <summary>
+            Sorts using the specified sorter. Will return null if there are no changes
+            </summary>
+            <param name="sortReason">The sort reason.</param>
+            <param name="changes">The changes.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DynamicData.Internal.TransformedItem`1">
+            <summary>
+                Staging object for ManyTransform.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="T:DynamicData.IChangeSet">
             <summary>
             Base interface represeting a set of changed
@@ -1249,288 +1531,6 @@
             </summary>
             <param name="change">The change.</param>
         </member>
-        <member name="M:DynamicData.Internal.AbstractFilter`2.UpdateWithFilter.#ctor(System.Boolean,DynamicData.Change{`0,`1})">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Object"/> class.
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.#ctor(DynamicData.IObservableCache{`0,`1})">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Object"/> class.
-            </summary>
-        </member>
-        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.CountChanged">
-            <summary>
-            A count changed observable starting with the current count
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Watch(`1)">
-            <summary>
-            Watches updates from a single item using the specified key
-            </summary>
-            <param name="key">The key.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Connect">
-            <summary>
-            Returns a stream of cache updates preceeded with the initital cache state
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Connect(System.Func{`0,System.Boolean})">
-            <summary>
-            Returns a filtered stream of cache updates preceeded with the initital filtered state
-            </summary>
-            <param name="filter">The filter.</param>
-            <returns></returns>
-        </member>
-        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Keys">
-            <summary>
-            Gets the keys
-            </summary>
-        </member>
-        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Items">
-            <summary>
-            Gets the Items
-            </summary>
-        </member>
-        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.Count">
-            <summary>
-            The total count of cached items
-            </summary>
-        </member>
-        <member name="P:DynamicData.Internal.AnomynousObservableCache`2.KeyValues">
-            <summary>
-            Gets the key value pairs
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Lookup(`1)">
-            <summary>
-            Lookup a single item using the specified key.
-            </summary>
-            <remarks>
-            Fast indexed lookup
-            </remarks>
-            <param name="key">The key.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.AnomynousObservableCache`2.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="T:DynamicData.Internal.KeySelectorException">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.KeySelectorException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Exception"/> class.
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.KeySelectorException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Exception"/> class with a specified error message.
-            </summary>
-            <param name="message">The message that describes the error. </param>
-        </member>
-        <member name="M:DynamicData.Internal.KeySelectorException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Exception"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
-            </summary>
-            <param name="message">The error message that explains the reason for the exception. </param><param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. </param>
-        </member>
-        <member name="P:DynamicData.Internal.KeyValueCollection`2.Comparer">
-            <summary>
-            Gets the comparer used to peform the sort
-            </summary>
-            <value>
-            The comparer.
-            </value>
-        </member>
-        <member name="T:DynamicData.Internal.TransformMany`2.TransformedItem`1">
-            <summary>
-             Staging object for ManyTransform.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="T:DynamicData.Internal.CombineOperator">
-            <summary>
-            How the multiple streams are combinedL
-            </summary>
-        </member>
-        <member name="F:DynamicData.Internal.CombineOperator.ContainedInEach">
-            <summary>
-            Resultant stream is comprised of items which are in each the caches
-            </summary>
-        </member>
-        <member name="F:DynamicData.Internal.CombineOperator.ContainedInAny">
-            <summary>
-            Resultant stream is comprised of items which are in any of the caches
-            </summary>
-        </member>
-        <member name="F:DynamicData.Internal.CombineOperator.ExceptFor">
-            <summary>
-            Resultant stream is comprised of items which are in the first stream and not the others
-            </summary>
-        </member>
-        <member name="T:DynamicData.Internal.Combiner`2">
-            <summary>
-                Combines multiple caches using logical opertators
-            </summary>
-        </member>
-        <member name="T:DynamicData.Internal.DynamicFilter`2">
-            <summary>
-             Filters and maintains a cache
-            </summary>
-            <typeparam name="TObject">The type of the object.</typeparam>
-            <typeparam name="TKey">The type of the key.</typeparam>
-        </member>
-        <member name="M:DynamicData.Internal.Grouper`3.ChangeWithGroup.#ctor(DynamicData.Change{`0,`1},System.Func{`0,`2})">
-            <summary>
-                Initializes a new instance of the <see cref="T:System.Object" /> class.
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.Grouper`3.ChangeWithGroup.ToString">
-            <summary>
-                Returns the fully qualified type name of this instance.
-            </summary>
-            <returns>
-                A <see cref="T:System.String" /> containing a fully qualified type name.
-            </returns>
-        </member>
-        <member name="M:DynamicData.Internal.IIndexCalculator`2.Load(DynamicData.ICache{`0,`1})">
-            <summary>
-            Initialises the specified changes.
-            </summary>
-            <param name="cache">The cache.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.IIndexCalculator`2.Calculate(DynamicData.IChangeSet{`0,`1})">
-            <summary>
-            Dynamic calculation of changed items which produce a result which can be enumerated through in order
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.IIndexCalculator`2.ChangeComparer(DynamicData.Internal.KeyValueComparer{`0,`1})">
-            <summary>
-            Changes the comparer.
-            </summary>
-            <param name="comparer">The comparer.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.IIndexCalculator`2.Reorder">
-            <summary>
-            Reorders the current list.  Required when the list is sorted on mutable values
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:DynamicData.Internal.IIndexCalculator`2.Comparer">
-            <summary>
-            Gets the comparer.
-            </summary>
-            <value>
-            The comparer.
-            </value>
-        </member>
-        <member name="P:DynamicData.Internal.IIndexCalculator`2.List">
-            <summary>
-            Gets the list.
-            </summary>
-        </member>
-        <member name="T:DynamicData.Internal.IndexCalculator`2">
-            <summary>
-            Calculates a sequential change set.
-            
-            This enables the binding infrastructure to simply iterate the change set
-            and apply indexed changes with no need to apply ant expensive IndexOf() operations.
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.IndexCalculator`2.#ctor(DynamicData.Internal.KeyValueComparer{`0,`1},DynamicData.Operators.SortOptimisations)">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Object"/> class.
-            </summary>
-        </member>
-        <member name="M:DynamicData.Internal.IndexCalculator`2.Load(DynamicData.ICache{`0,`1})">
-            <summary>
-            Initialises the specified changes.
-            </summary>
-            <param name="cache">The cache.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.IndexCalculator`2.Reset(DynamicData.ICache{`0,`1})">
-            <summary>
-            Initialises the specified changes.
-            </summary>
-            <param name="cache">The cache.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.IndexCalculator`2.Calculate(DynamicData.IChangeSet{`0,`1})">
-            <summary>
-            Dynamic calculation of moved items which produce a result which can be enumerated through in order
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.ManagedGroup`3.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
-            </summary>
-            <returns>
-            true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
-            </returns>
-            <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
-        </member>
-        <member name="M:DynamicData.Internal.ManagedGroup`3.GetHashCode">
-            <summary>
-            Serves as a hash function for a particular type. 
-            </summary>
-            <returns>
-            A hash code for the current <see cref="T:System.Object"/>.
-            </returns>
-        </member>
-        <member name="M:DynamicData.Internal.ManagedGroup`3.ToString">
-            <summary>
-            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-            </summary>
-            <returns>
-            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-            </returns>
-        </member>
-        <member name="M:DynamicData.Internal.Sorter`2.Sort(DynamicData.IChangeSet{`0,`1})">
-            <summary>
-            Sorts the specified changes. Will return null if there are no changes
-            </summary>
-            <param name="changes">The changes.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.Sorter`2.Sort(System.Collections.Generic.IComparer{`0})">
-            <summary>
-            Sorts all data using the specified comparer
-            </summary>
-            <param name="comparer">The comparer.</param>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.Sorter`2.Sort">
-            <summary>
-            Sorts all data using the current comparer
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DynamicData.Internal.Sorter`2.DoSort(DynamicData.SortReason,DynamicData.IChangeSet{`0,`1})">
-            <summary>
-            Sorts using the specified sorter. Will return null if there are no changes
-            </summary>
-            <param name="sortReason">The sort reason.</param>
-            <param name="changes">The changes.</param>
-            <returns></returns>
-        </member>
-        <member name="T:DynamicData.Internal.TransformedItem`1">
-            <summary>
-                Staging object for ManyTransform.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
         <member name="T:DynamicData.IGroup`2">
             <summary>
             A gouping of observable lists
@@ -2119,18 +2119,6 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException">source</exception>
         </member>
-        <member name="M:DynamicData.DynamicDataEx.ChangeKey``3(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,``2})">
-            <summary>
-            Changes the primary key.
-            </summary>
-            <typeparam name="TObject">The type of the object.</typeparam>
-            <typeparam name="TSourceKey">The type of the source key.</typeparam>
-            <typeparam name="TDestinationKey">The type of the destination key.</typeparam>
-            <param name="source">The source.</param>
-            <param name="keySelector">The key selector.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException">source</exception>
-        </member>
         <member name="M:DynamicData.DynamicDataEx.NotEmpty``2(System.IObservable{DynamicData.IChangeSet{``0,``1}})">
             <summary>
             Supresses updates which are empty
@@ -2318,6 +2306,31 @@
             <returns></returns>
             <exception cref="T:System.ArgumentNullException">reasons</exception>
             <exception cref="T:System.ArgumentException">Must select at least on reason</exception>
+        </member>
+        <member name="M:DynamicData.DynamicDataEx.ChangeKey``3(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,``2})">
+            <summary>
+            Changes the primary key.
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TSourceKey">The type of the source key.</typeparam>
+            <typeparam name="TDestinationKey">The type of the destination key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="keySelector">The key selector.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">source</exception>
+        </member>
+        <member name="M:DynamicData.DynamicDataEx.Convert``3(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,``2})">
+            <summary>
+            Convert the object using the sepcified conversion function.
+            This is a lighter equivalent of Transform and is designed to be used with non-disposable objects
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <param name="source">The source.</param>
+            <param name="conversionFactory">The conversion factory.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="M:DynamicData.DynamicDataEx.Batch``2(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.TimeSpan,System.Reactive.Concurrency.IScheduler)">
             <summary>
@@ -2829,6 +2842,16 @@
             <exception cref="T:System.ArgumentNullException">source
             or
             transformFactory</exception>
+        </member>
+        <member name="M:DynamicData.DynamicDataEx.TransformToTree``2(System.IObservable{DynamicData.IChangeSet{``0,``1}},System.Func{``0,``1})">
+            <summary>
+            Transforms the object to a fully recursive tree, create a hiearchy based on the pivot function
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="pivotOn">The pivot on.</param>
+            <returns></returns>
         </member>
         <member name="M:DynamicData.DynamicDataEx.TransformMany``4(System.IObservable{DynamicData.IChangeSet{``2,``3}},System.Func{``2,System.Collections.Generic.IEnumerable{``0}})">
             <summary>
@@ -3657,14 +3680,14 @@
             <summary>
             The previous change.
             
-            This is only when Reason==ChangeReason.Update.
+            This is only when Reason==ChangeReason.Replace.
             </summary>
         </member>
         <member name="P:DynamicData.Change`2.PreviousIndex">
             <summary>
             The previous change.
             
-            This is only when Reason==ChangeReason.Update or ChangeReason.Move.
+            This is only when Reason==ChangeReason.Replace or ChangeReason.Move.
             </summary>
         </member>
         <member name="M:DynamicData.Change`2.Equals(DynamicData.Change{`0,`1})">
@@ -4206,14 +4229,14 @@
             <summary>
             The previous change.
             
-            This is only when Reason==ChangeReason.Update.
+            This is only when Reason==ChangeReason.Replace.
             </summary>
         </member>
         <member name="P:DynamicData.ItemChange`1.PreviousIndex">
             <summary>
             The previous index.
             
-            This is only when Reason==ChangeReason.Update or ChangeReason.Move.
+            This is only when Reason==ChangeReason.Replace or ChangeReason.Move.
             </summary>
         </member>
         <member name="M:DynamicData.ItemChange`1.#ctor(`0,DynamicData.Kernel.Optional{`0},System.Int32,System.Int32)">
@@ -4326,7 +4349,7 @@
             A range of items has been added
             </summary>
         </member>
-        <member name="F:DynamicData.ListChangeReason.Update">
+        <member name="F:DynamicData.ListChangeReason.Replace">
             <summary>
              An item has been updated
             </summary>
@@ -4350,6 +4373,15 @@
             <summary>
             The entire collection has been cleared
             </summary>
+        </member>
+        <member name="M:DynamicData.ListChangeToKeyedChangeEnumerator`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
         <member name="T:DynamicData.ListEx">
             <summary>
@@ -4512,6 +4544,32 @@
             <summary>
             Extenssions for ObservableList
             </summary>
+        </member>
+        <member name="M:DynamicData.ObservableListEx.WithKey``2(System.IObservable{DynamicData.IChangeSet{``0}},System.Func{``0,``1})">
+            <summary>
+            Adds a key to each item,  which enables all caching features of dynamic data
+            </summary>
+            <typeparam name="TObject">The type of  object.</typeparam>
+            <typeparam name="TKey">The type of  key.</typeparam>
+            <param name="source">The source.</param>
+            <param name="keySelector">The key selector.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="M:DynamicData.ObservableListEx.Convert``2(System.IObservable{DynamicData.IChangeSet{``0}},System.Func{``0,``1})">
+            <summary>
+            Convert the object using the sepcified conversion function.
+            
+            This is a lighter equivalent of Transform and is designed to be used with non-disposable objects
+            </summary>
+            <typeparam name="TObject">The type of the object.</typeparam>
+            <typeparam name="TDestination">The type of the destination.</typeparam>
+            <param name="source">The source.</param>
+            <param name="conversionFactory">The conversion factory.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
         </member>
         <member name="M:DynamicData.ObservableListEx.LimitSizeTo``1(DynamicData.ISourceList{``0},System.Int32,System.Reactive.Concurrency.IScheduler)">
             <summary>
