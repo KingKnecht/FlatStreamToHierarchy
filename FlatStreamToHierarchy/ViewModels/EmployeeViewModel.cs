@@ -26,9 +26,11 @@ namespace FlatStreamToHierarchy.ViewModels
             Name = node.Item.Name;
             Depth = node.Depth;
             Parent = parent;
+            BossId = node.Item.BossId; 
+            Dto = node.Item;
 
             _promoteCommand = new Command(()=>promoteAction(this),()=>Parent.HasValue);
-            _sackCommand = new Command(() => sackAction(this), () => Parent.HasValue);
+            _sackCommand = new Command(() => sackAction(this));
 
             var childrenLoader = new Lazy<IDisposable>(() => node.Children.Connect()
                                 .Transform(e => new EmployeeViewModel(e, promoteAction, sackAction,this))
@@ -76,11 +78,12 @@ namespace FlatStreamToHierarchy.ViewModels
             });
         }
 
-
         public int Id { get; private set; }
         public string Name { get; private set; }
         public int Depth { get ; private set; }
-        public Optional<EmployeeViewModel> Parent { get; set; }
+        public int BossId { get; private set; }
+        public EmployeeDto Dto { get; private set; }
+        public Optional<EmployeeViewModel> Parent { get; private set; }
         public IObservableCollection<EmployeeViewModel> Inferiors { get; private set; }
 
 
@@ -91,7 +94,7 @@ namespace FlatStreamToHierarchy.ViewModels
 
         public ICommand SackCommand
         {
-            get { return _promoteCommand; }
+            get { return _sackCommand; }
         }
 
         public string EmployeeCountText

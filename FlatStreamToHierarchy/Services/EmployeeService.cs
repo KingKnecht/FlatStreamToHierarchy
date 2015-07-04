@@ -20,14 +20,31 @@ namespace FlatStreamToHierarchy.Services
             get { return _employees.AsObservableCache(); }
         }
 
-        public void Promote(EmployeeDto emp)
+        public void Promote(EmployeeDto promtedDto, int  newBoss)
         {
-            
+            //simulate going to a service
+
+            //update the cache with the emploee, 
+            _employees.AddOrUpdate(new EmployeeDto(promtedDto.Id) { Name = promtedDto.Name, BossId = newBoss });
         }
 
 
-        public void Sack(EmployeeDto emp)
+        public void Sack(EmployeeDto sackEmp)
         {
+            _employees.BatchUpdate(updater =>
+            {
+                //assign new boss to the workers of the sacked employee
+                var workersWithNewBoss = updater.Items
+                                    .Where(emp => emp.BossId == sackEmp.Id)
+                                    .Select(dto => new EmployeeDto(dto.Id) { Name = dto.Name, BossId = sackEmp.BossId })
+                                    .ToArray();
+
+                updater.AddOrUpdate(workersWithNewBoss);
+
+                //get rid of the existing person
+                updater.Remove(sackEmp.Id);
+            });
+
 
         }
 

@@ -7,6 +7,7 @@ namespace FlatStreamToHierarchy.ViewModels
 {
     public class EmployeesViewModel : IDisposable
     {
+        private readonly EmployeeService _employeeService;
         private readonly IObservableCollection<EmployeeViewModel> _employeeViewModels = new ObservableCollectionExtended<EmployeeViewModel>();
         private readonly IDisposable _cleanUp;
 
@@ -16,6 +17,7 @@ namespace FlatStreamToHierarchy.ViewModels
         /// <param name="employeeService">The employee service.</param>
         public EmployeesViewModel(EmployeeService employeeService)
         {
+            _employeeService = employeeService;
             var stream = employeeService.Employees.Connect();
 
             //transform the data to a full nested tree
@@ -29,12 +31,13 @@ namespace FlatStreamToHierarchy.ViewModels
 
         private void Promote(EmployeeViewModel viewModel)
         {
-            
+            if (!viewModel.Parent.HasValue) return;
+            _employeeService.Promote(viewModel.Dto,viewModel.Parent.Value.BossId);
         }
 
         private void Sack(EmployeeViewModel viewModel)
         {
-
+            _employeeService.Sack(viewModel.Dto);
         }
 
         public IObservableCollection<EmployeeViewModel> EmployeeViewModels
