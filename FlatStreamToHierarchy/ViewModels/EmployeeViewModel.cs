@@ -34,6 +34,7 @@ namespace FlatStreamToHierarchy.ViewModels
 
             var childrenLoader = new Lazy<IDisposable>(() => node.Children.Connect()
                                 .Transform(e => new EmployeeViewModel(e, promoteAction, sackAction,this))
+                                .Sort(SortExpressionComparer<EmployeeViewModel>.Ascending(evm => evm.Name))
                                 .Bind(Inferiors)
                                 .DisposeMany()
                                 .Subscribe());

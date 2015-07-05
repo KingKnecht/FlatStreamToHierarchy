@@ -18,13 +18,12 @@ namespace FlatStreamToHierarchy.ViewModels
         public EmployeesViewModel(EmployeeService employeeService)
         {
             _employeeService = employeeService;
-            var stream = employeeService.Employees.Connect();
 
             //transform the data to a full nested tree
-            //and transform into a fully recursive view model
-            _cleanUp = stream.TransformToTree(employee => employee.BossId)
+            //then transform into a fully recursive view model
+            _cleanUp =  employeeService.Employees.Connect()
+                .TransformToTree(employee => employee.BossId)
                 .Transform(node => new EmployeeViewModel(node, Promote,Sack))
-                .Sort(SortExpressionComparer<EmployeeViewModel>.Ascending(evm=>evm.Name))
                 .Bind(_employeeViewModels)
                 .DisposeMany()
                 .Subscribe();    
