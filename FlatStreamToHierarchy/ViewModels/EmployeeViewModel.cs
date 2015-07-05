@@ -45,8 +45,7 @@ namespace FlatStreamToHierarchy.ViewModels
                                 .Bind(Inferiors)
                                 .DisposeMany()
                                 .Subscribe());
-
-
+            
             var disposer = new SingleAssignmentDisposable();
             if (!Parent.HasValue)
             {
@@ -122,8 +121,7 @@ namespace FlatStreamToHierarchy.ViewModels
         {
             get { return _inferiors; }
         }
-
-
+        
         public ICommand PromoteCommand
         {
             get { return _promoteCommand; }
