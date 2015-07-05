@@ -7,32 +7,33 @@ namespace FlatStreamToHierarchy.ViewModels
 {
     public class EmployeesViewModel : IDisposable
     {
+        private readonly EmployeeService _employeeService;
         private readonly IObservableCollection<EmployeeViewModel> _employeeViewModels = new ObservableCollectionExtended<EmployeeViewModel>();
         private readonly IDisposable _cleanUp;
 
         public EmployeesViewModel(EmployeeService employeeService)
         {
-            var stream = employeeService.Employees.Connect();
-            
-            /*
-              split node from vm as I will abstract
-              make a new heirachal operator in dynamic data 
-              and optimise
-             */
-            var nodes = stream.Filter(dto => dto.BossId == 0)
-                .Transform(dto => new EmployeeNode(dto, id => stream.Filter(e => e.BossId == id)))
-                .AsObservableCache();
+            _employeeService = employeeService;
 
-            //load recursive view model
-            _cleanUp = nodes.Connect()
-                .Transform(e => new EmployeeViewModel(e))
+            //transform the data to a full nested tree
+            //then transform into a fully recursive view model
+            _cleanUp =  employeeService.Employees.Connect()
+                .TransformToTree(employee => employee.BossId)
+                .Transform(node => new EmployeeViewModel(node, Promote,Sack))
                 .Bind(_employeeViewModels)
                 .DisposeMany()
                 .Subscribe();    
-        
-            //other notes
-            //1. I implenented equality members using the id fields as some dd operators depend on it
-            //2. The implementation of nodes using .Filter (above) may be slow for large data sets. I will sort this out when I do the hierachal operator
+        }
+
+        private void Promote(EmployeeViewModel viewModel)
+        {
+            if (!viewModel.Parent.HasValue) return;
+            _employeeService.Promote(viewModel.Dto,viewModel.Parent.Value.BossId);
+        }
+
+        private void Sack(EmployeeViewModel viewModel)
+        {
+            _employeeService.Sack(viewModel.Dto);
         }
 
         public IObservableCollection<EmployeeViewModel> EmployeeViewModels

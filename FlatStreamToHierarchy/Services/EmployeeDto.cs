@@ -1,22 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FlatStreamToHierarchy.Services.Dtos
+namespace FlatStreamToHierarchy.Services
 {
     public class EmployeeDto : IEquatable<EmployeeDto>
     {
-        
-        public EmployeeDto(int id)
+        private readonly int _id;
+        private readonly int _bossId;
+        private readonly string _name;
+
+        public EmployeeDto(int id, string name, int boss)
         {
-            Id = id;
+            _id = id;
+            _name = name;
+            _bossId = boss;
         }
 
-        public int Id { get; set; }
-        public int BossId { get; set; }
-        public string Name { get; set; }
+        public int Id
+        {
+            get { return _id; }
+        }
+
+        public int BossId
+        {
+            get { return _bossId; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
 
         #region Equality Members
 
