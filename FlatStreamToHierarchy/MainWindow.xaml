@@ -19,6 +19,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
                 <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TreeView.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.button.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/FlatStreamToHierarchy;component/Themes/TreeView.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -56,14 +59,14 @@
 
     <Grid>
         <TreeView 
-            DataContext="{Binding Employees }"
-            ItemsSource="{Binding EmployeeViewModels}"  >
+            ItemsSource="{Binding EmployeeViewModels}"
+            DataContext="{Binding Employees }"  >
             <TreeView.Resources>
-                <Style TargetType="{x:Type TreeViewItem}">
+                <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MetroTreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </Style>
-                
+
                 <HierarchicalDataTemplate DataType="{x:Type viewModels:EmployeeViewModel}" ItemsSource="{Binding Inferiors}">
                     <Grid Margin="4" >
                         <Grid.ColumnDefinitions>
@@ -90,7 +93,7 @@
                                     Margin="4 2 2 4"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
-                            
+
                             <StackPanel.Resources>
                                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
                                     <Setter Property="Margin" Value="2 0 0 0"/>
@@ -101,12 +104,13 @@
 
                             <Button Visibility="{Binding  IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     ToolTip="Promote"
+                                    
                                     Command="{Binding PromoteCommand}">
 
                                 <Canvas Width="24" Height="24">
                                     <Path
                                         Data="M14,20H10V11L6.5,14.5L4.08,12.08L12,4.16L19.92,12.08L17.5,14.5L14,11V20Z"
-                                        Fill="{DynamicResource HighlightBrush}" />
+                                        Fill="{DynamicResource WhiteBrush}" />
                                 </Canvas>
                             </Button>
 
@@ -117,7 +121,7 @@
                                 <Viewbox Width="24" Height="24" Margin="2 0 0 0">
                                     <Canvas Width="24" Height="24">
                                         <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                				        Fill="{StaticResource HighlightBrush}"/>
+                				        Fill="{StaticResource AccentSelectedColorBrush}"/>
                                     </Canvas>
                                 </Viewbox>
                             </Button>
@@ -125,6 +129,7 @@
                     </Grid>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
+
         </TreeView>
     </Grid>
 </controls:MetroWindow>

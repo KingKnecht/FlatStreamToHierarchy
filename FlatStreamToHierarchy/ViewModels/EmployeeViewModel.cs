@@ -6,7 +6,7 @@ using DynamicData;
 using DynamicData.Binding;
 using DynamicData.Kernel;
 using FlatStreamToHierarchy.Infrastructure;
-using FlatStreamToHierarchy.Services.Dtos;
+using FlatStreamToHierarchy.Services;
 
 namespace FlatStreamToHierarchy.ViewModels
 {
@@ -18,38 +18,34 @@ namespace FlatStreamToHierarchy.ViewModels
         private readonly Command _promoteCommand;
         private readonly Command _sackCommand;
         private string _employeeCountText;
+        private readonly int _depth;
+        private readonly int _bossId;
+        private readonly EmployeeDto _dto;
+        private readonly Optional<EmployeeViewModel> _parent;
+        private readonly IObservableCollection<EmployeeViewModel> _inferiors;
+        private readonly int _id;
+        private readonly string _name;
 
         public EmployeeViewModel(Node<EmployeeDto, int> node, Action<EmployeeViewModel> promoteAction, Action<EmployeeViewModel> sackAction, EmployeeViewModel parent = null)
         {
-            Inferiors = new ObservableCollectionExtended<EmployeeViewModel>();
-            Id = node.Key;
-            Name = node.Item.Name;
-            Depth = node.Depth;
-            Parent = parent;
-            BossId = node.Item.BossId; 
-            Dto = node.Item;
+            _inferiors = new ObservableCollectionExtended<EmployeeViewModel>();
+            _id = node.Key;
+            _name = node.Item.Name;
+            _depth = node.Depth;
+            _parent = parent;
+            _bossId = node.Item.BossId; 
+            _dto = node.Item;
 
             _promoteCommand = new Command(()=>promoteAction(this),()=>Parent.HasValue);
             _sackCommand = new Command(() => sackAction(this));
 
+            //use laxy loading 
             var childrenLoader = new Lazy<IDisposable>(() => node.Children.Connect()
                                 .Transform(e => new EmployeeViewModel(e, promoteAction, sackAction,this))
-                                .Sort(SortExpressionComparer<EmployeeViewModel>.Ascending(evm => evm.Name))
                                 .Bind(Inferiors)
                                 .DisposeMany()
                                 .Subscribe());
 
-            var employeesCount = node.Children.CountChanged
-                .Select(count =>
-                {
-                    if (count == 0)
-                        return "I am a at rock bottom";
-                   
-                     return count == 1 
-                        ? "1 person reports to me"
-                        : string.Format("{0} people reports to me", count);
-
-                }).Subscribe(text=>EmployeeCountText=text);
 
             var disposer = new SingleAssignmentDisposable();
             if (!Parent.HasValue)
@@ -70,6 +66,19 @@ namespace FlatStreamToHierarchy.ViewModels
                     });
             }
 
+            //create some display text based on the number of employees
+            var employeesCount = node.Children.CountChanged
+                .Select(count =>
+                {
+                    if (count == 0)
+                        return "I am a at rock bottom";
+
+                    return count == 1
+                       ? "1 person reports to me"
+                       : string.Format("{0} people reports to me", count);
+
+                }).Subscribe(text => EmployeeCountText = text);
+
             _cleanUp = Disposable.Create(() =>
             {
                 disposer.Dispose();
@@ -79,13 +88,40 @@ namespace FlatStreamToHierarchy.ViewModels
             });
         }
 
-        public int Id { get; private set; }
-        public string Name { get; private set; }
-        public int Depth { get ; private set; }
-        public int BossId { get; private set; }
-        public EmployeeDto Dto { get; private set; }
-        public Optional<EmployeeViewModel> Parent { get; private set; }
-        public IObservableCollection<EmployeeViewModel> Inferiors { get; private set; }
+        public int Id
+        {
+            get { return _id; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        public int Depth
+        {
+            get { return _depth; }
+        }
+
+        public int BossId
+        {
+            get { return _bossId; }
+        }
+
+        public EmployeeDto Dto
+        {
+            get { return _dto; }
+        }
+
+        public Optional<EmployeeViewModel> Parent
+        {
+            get { return _parent; }
+        }
+
+        public IObservableCollection<EmployeeViewModel> Inferiors
+        {
+            get { return _inferiors; }
+        }
 
 
         public ICommand PromoteCommand
@@ -115,9 +151,7 @@ namespace FlatStreamToHierarchy.ViewModels
             get { return _isSelected; }
             set { SetAndRaise(ref _isSelected, value); }
         }
-
-
-
+        
         #region Equality Members
 
         public bool Equals(EmployeeViewModel other)

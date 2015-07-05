@@ -11,10 +11,6 @@ namespace FlatStreamToHierarchy.ViewModels
         private readonly IObservableCollection<EmployeeViewModel> _employeeViewModels = new ObservableCollectionExtended<EmployeeViewModel>();
         private readonly IDisposable _cleanUp;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmployeesViewModel"/> class.
-        /// </summary>
-        /// <param name="employeeService">The employee service.</param>
         public EmployeesViewModel(EmployeeService employeeService)
         {
             _employeeService = employeeService;

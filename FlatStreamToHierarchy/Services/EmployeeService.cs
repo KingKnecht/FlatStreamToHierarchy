@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DynamicData;
-using FlatStreamToHierarchy.Services.Dtos;
 
 namespace FlatStreamToHierarchy.Services
 {
@@ -25,7 +24,7 @@ namespace FlatStreamToHierarchy.Services
             //simulate going to a service
 
             //update the cache with the emploee, 
-            _employees.AddOrUpdate(new EmployeeDto(promtedDto.Id) { Name = promtedDto.Name, BossId = newBoss });
+            _employees.AddOrUpdate(new EmployeeDto(promtedDto.Id,promtedDto.Name,newBoss));
         }
 
 
@@ -36,7 +35,7 @@ namespace FlatStreamToHierarchy.Services
                 //assign new boss to the workers of the sacked employee
                 var workersWithNewBoss = updater.Items
                                     .Where(emp => emp.BossId == sackEmp.Id)
-                                    .Select(dto => new EmployeeDto(dto.Id) { Name = dto.Name, BossId = sackEmp.BossId })
+                                    .Select(dto => new EmployeeDto(dto.Id, dto.Name,  sackEmp.BossId))
                                     .ToArray();
 
                 updater.AddOrUpdate(workersWithNewBoss);
@@ -48,8 +47,6 @@ namespace FlatStreamToHierarchy.Services
 
         }
 
-
-
         private IEnumerable<EmployeeDto> CreateEmployees(int numberToLoad)
         {
             var random = new Random();
@@ -58,7 +55,7 @@ namespace FlatStreamToHierarchy.Services
                 .Select(i =>
                 {
                     var boss = i%1000 == 0 ? 0 : random.Next(0, i);
-                    return new EmployeeDto(i){Name = string.Format("Person {0}",i),BossId = boss};
+                    return new EmployeeDto(i, string.Format("Person {0}",i), boss);
                 });
         }
     }
