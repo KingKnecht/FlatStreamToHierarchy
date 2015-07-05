@@ -24,6 +24,7 @@ namespace FlatStreamToHierarchy.ViewModels
             //and transform into a fully recursive view model
             _cleanUp = stream.TransformToTree(employee => employee.BossId)
                 .Transform(node => new EmployeeViewModel(node, Promote,Sack))
+                .Sort(SortExpressionComparer<EmployeeViewModel>.Ascending(evm=>evm.Name))
                 .Bind(_employeeViewModels)
                 .DisposeMany()
                 .Subscribe();    

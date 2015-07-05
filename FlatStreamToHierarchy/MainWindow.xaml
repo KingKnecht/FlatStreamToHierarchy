@@ -5,17 +5,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:FlatStreamToHierarchy.ViewModels"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+
+    
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
-        mc:Ignorable="d"
-        Title="Recursive Tree Using Dynamic Data" Height="600" Width="525"
-        
-        >
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                      mc:Ignorable="d"
+        Title="Recursive Tree Using Dynamic Data" Height="600" Width="525" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TreeView.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TreeView.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.button.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -57,8 +60,8 @@
             ItemsSource="{Binding EmployeeViewModels}"  >
             <TreeView.Resources>
                 <Style TargetType="{x:Type TreeViewItem}">
-                    <Setter Property="TreeViewItem.IsExpanded" Value="{Binding IsExpanded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <Setter Property="TreeViewItem.IsSelected" Value="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </Style>
                 
                 <HierarchicalDataTemplate DataType="{x:Type viewModels:EmployeeViewModel}" ItemsSource="{Binding Inferiors}">
@@ -84,54 +87,41 @@
                             Text="{Binding EmployeeCountText}" />
 
                         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                    Margin="4 2 2 4"
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal">
                             
                             <StackPanel.Resources>
-                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroAccentButton}">
-                                    <Setter Property="Padding" Value="4"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-
-                                    <!--<Style.Triggers>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Binding="{Binding IsSelected}" Value="True"/>
-                                                <Condition Binding="{Binding Parent.HasValue}" Value="False"/>
-                                            </MultiTrigger.Conditions>
-                                        </MultiTrigger>
-                                    </Style.Triggers>-->
-                                    
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                    <Setter Property="Margin" Value="2 0 0 0"/>
+                                    <Setter Property="Padding" Value="1"/>
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
                                 </Style>
                             </StackPanel.Resources>
 
-                            <Button 
-                                Visibility="{Binding  IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                ToolTip="Promote"
-                                Command="{Binding PromoteCommand}">
+                            <Button Visibility="{Binding  IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    ToolTip="Promote"
+                                    Command="{Binding PromoteCommand}">
 
                                 <Canvas Width="24" Height="24">
                                     <Path
                                         Data="M14,20H10V11L6.5,14.5L4.08,12.08L12,4.16L19.92,12.08L17.5,14.5L14,11V20Z"
-                                        Fill="{DynamicResource BlackBrush}" />
+                                        Fill="{DynamicResource HighlightBrush}" />
                                 </Canvas>
                             </Button>
 
-                            <Button
-                                Visibility="{Binding  IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                ToolTip="Sack"
-                                Command="{Binding SackCommand}">
-                                <Canvas Width="24" Height="24">
-                                    <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                                          Fill="{DynamicResource BlackBrush}"  />
-                                </Canvas>
+                            <Button Visibility="{Binding  IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    ToolTip="Sack"
+                                    Command="{Binding SackCommand}">
+
+                                <Viewbox Width="24" Height="24" Margin="2 0 0 0">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                				        Fill="{StaticResource HighlightBrush}"/>
+                                    </Canvas>
+                                </Viewbox>
                             </Button>
                         </StackPanel>
-
-
-
-
-
-
                     </Grid>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
